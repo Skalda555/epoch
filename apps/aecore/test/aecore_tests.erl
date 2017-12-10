@@ -19,5 +19,8 @@ application_test() ->
   ?assertEqual(ok, application:start(App)),
   ok = application:stop(App),
   aec_test_utils:remove_temp_key_dir(TempDir),
+  %% Warning when erlexec has started an OS process, it can take up to 10 seconds to stop
+  %% the applications.
+  %% This happens when this test is run twice after each other.
   [ ok = application:stop(D) || D <- lists:reverse(Deps -- AlreadyRunning) ],
   ok.
