@@ -59,7 +59,7 @@ genesis_block() ->
 
 populated_trees() ->
     {ok, T0} = aec_trees:all_trees_new(),
-    PresetAccounts = aec_genesis_block_settings:preset_accounts(),
+    PresetAccounts = ?GENESIS_ACCOUNTS,
     Trees = add_preset_accounts(PresetAccounts, T0),
     Trees.
 
